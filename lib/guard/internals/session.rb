@@ -38,7 +38,7 @@ module Guard
         force_polling: false,
         wait_for_delay: nil,
         listen_on: nil
-      }
+      }.freeze
 
       def cmdline_groups
         @cmdline_groups.dup.freeze

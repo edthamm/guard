@@ -19,7 +19,7 @@ module Guard
 
       def restore
         return unless configurable? && @settings
-        Shellany::Sheller.run("stty #{ @setting } 2>#{IO::NULL}")
+        Shellany::Sheller.run("stty #{@setting} 2>#{IO::NULL}")
       end
 
       def save
@@ -40,11 +40,11 @@ module Guard
     class PryWrapper < Base
       # The default Ruby script to configure Guard Pry if the option `:guard_rc`
       # is not defined.
-      GUARD_RC = "~/.guardrc"
+      GUARD_RC = "~/.guardrc".freeze
 
       # The default Guard Pry history file if the option `:history_file` is not
       # defined.
-      HISTORY_FILE = "~/.guard_history"
+      HISTORY_FILE = "~/.guard_history".freeze
 
       # List of shortcuts for each interactor command
       SHORTCUTS = {
@@ -58,7 +58,7 @@ module Guard
         pause: "p",
         exit: "e",
         quit: "q"
-      }
+      }.freeze
 
       def initialize(options)
         @mutex = Mutex.new
@@ -225,12 +225,12 @@ module Guard
       #
       def _create_guard_commands
         Guard.state.session.plugins.all.each do |guard_plugin|
-          cmd = "Run all #{ guard_plugin.title }"
+          cmd = "Run all #{guard_plugin.title}"
           Pry.commands.create_command guard_plugin.name, cmd do
             group "Guard"
 
             def process
-              Pry.run_command "all #{ match }"
+              Pry.run_command "all #{match}"
             end
           end
         end
@@ -245,12 +245,12 @@ module Guard
         Guard.state.session.groups.all.each do |group|
           next if group.name == :default
 
-          cmd = "Run all #{ group.title }"
+          cmd = "Run all #{group.title}"
           Pry.commands.create_command group.name.to_s, cmd do
             group "Guard"
 
             def process
-              Pry.run_command "all #{ match }"
+              Pry.run_command "all #{match}"
             end
           end
         end
@@ -278,10 +278,10 @@ module Guard
         proc do |target_self, nest_level, pry|
           history = pry.input_array.size
           process = Guard.listener.paused? ? "pause" : "guard"
-          level = ":#{ nest_level }" unless nest_level.zero?
+          level = ":#{nest_level}" unless nest_level.zero?
 
-          "[#{ history }] #{ _scope_for_prompt }#{ process }"\
-            "(#{ _clip_name(target_self) })#{ level }#{ ending_char } "
+          "[#{history}] #{_scope_for_prompt}#{process}"\
+            "(#{_clip_name(target_self)})#{level}#{ending_char} "
         end
       end
 

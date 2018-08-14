@@ -42,7 +42,7 @@ module Guard
   # plugins.
   #
   class Plugin
-    TEMPLATE_FORMAT = "%s/lib/guard/%s/templates/Guardfile"
+    TEMPLATE_FORMAT = "%s/lib/guard/%s/templates/Guardfile".freeze
 
     require "guard/ui"
 
@@ -116,12 +116,12 @@ module Guard
     def hook(event, *args)
       hook_name = if event.is_a? Symbol
                     calling_method = caller[0][/`([^']*)'/, 1]
-                    "#{ calling_method }_#{ event }"
+                    "#{calling_method}_#{event}"
                   else
                     event
                   end
 
-      UI.debug "Hook :#{ hook_name } executed for #{ self.class }"
+      UI.debug "Hook :#{hook_name} executed for #{self.class}"
 
       self.class.notify(self, hook_name.to_sym, *args)
     end

@@ -251,11 +251,11 @@ module Guard
           next if color_option == ""
 
           unless color_option =~ /\d+/
-            color_option = const_get("ANSI_ESCAPE_#{ color_option.upcase }")
+            color_option = const_get("ANSI_ESCAPE_#{color_option.upcase}")
           end
           color_code += ";" + color_option
         end
-        color_enabled? ? "\e[0#{ color_code }m#{ text }\e[0m" : text
+        color_enabled? ? "\e[0#{color_code}m#{text}\e[0m" : text
       end
     end
   end

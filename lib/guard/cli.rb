@@ -154,7 +154,7 @@ module Guard
     # @see Guard::VERSION
     #
     def version
-      $stdout.puts "Guard version #{ VERSION }"
+      $stdout.puts "Guard version #{VERSION}"
     end
 
     desc "init [GUARDS]", "Generates a Guardfile at the current directory"\

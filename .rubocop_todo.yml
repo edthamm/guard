@@ -6,85 +6,11 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: Include, TreatCommentsAsGroupSeparators.
-# Include: **/Gemfile, **/gems.rb
-Bundler/OrderedGems:
-  Exclude:
-    - 'Gemfile'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: Include, TreatCommentsAsGroupSeparators.
-# Include: **/*.gemspec
-Gemspec/OrderedDependencies:
-  Exclude:
-    - 'guard.gemspec'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Layout/EmptyLineAfterMagicComment:
   Exclude:
-    - 'guard.gemspec'
     - 'spec/lib/guard/dsl_describer_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
-Layout/IndentHeredoc:
-  Exclude:
-    - 'lib/guard/cli/environments/bundler.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/SpaceInsideArrayPercentLiteral:
-  Exclude:
-    - 'guard.gemspec'
-
-# Offense count: 41
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: space, no_space
-Layout/SpaceInsideStringInterpolation:
-  Exclude:
-    - 'lib/guard.rb'
-    - 'lib/guard/cli.rb'
-    - 'lib/guard/commander.rb'
-    - 'lib/guard/commands/all.rb'
-    - 'lib/guard/commands/reload.rb'
-    - 'lib/guard/commands/scope.rb'
-    - 'lib/guard/dsl.rb'
-    - 'lib/guard/guardfile/evaluator.rb'
-    - 'lib/guard/jobs/pry_wrapper.rb'
-    - 'lib/guard/plugin.rb'
-    - 'lib/guard/plugin_util.rb'
-    - 'lib/guard/runner.rb'
-    - 'lib/guard/ui.rb'
-
-# Offense count: 9
-Lint/NestedMethodDefinition:
-  Exclude:
-    - 'lib/guard/commands/all.rb'
-    - 'lib/guard/commands/change.rb'
-    - 'lib/guard/commands/notification.rb'
-    - 'lib/guard/commands/pause.rb'
-    - 'lib/guard/commands/reload.rb'
-    - 'lib/guard/commands/scope.rb'
-    - 'lib/guard/commands/show.rb'
-    - 'lib/guard/jobs/pry_wrapper.rb'
-
-# Offense count: 2
-Lint/RescueWithoutErrorClass:
-  Exclude:
-    - 'lib/guard/guardfile/evaluator.rb'
-    - 'lib/guard/watcher.rb'
-
-# Offense count: 1
-Lint/ShadowedException:
-  Exclude:
-    - 'lib/guard/runner.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -97,42 +23,12 @@ Lint/UnneededSplatExpansion:
 Metrics/BlockLength:
   Max: 518
 
-# Offense count: 33
-# Configuration parameters: Blacklist.
-# Blacklist: END, (?-mix:EO[A-Z]{1})
-Naming/HeredocDelimiterNaming:
-  Exclude:
-    - 'lib/guard/cli/environments/bundler.rb'
-    - 'lib/guard/deprecated/dsl.rb'
-    - 'lib/guard/deprecated/evaluator.rb'
-    - 'lib/guard/deprecated/guard.rb'
-    - 'lib/guard/deprecated/guardfile.rb'
-    - 'lib/guard/deprecated/watcher.rb'
-    - 'lib/guard/guardfile.rb'
-
 # Offense count: 2
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: snake_case, normalcase, non_integer
 Naming/VariableNumber:
   Exclude:
     - 'spec/lib/guard/dsl_spec.rb'
-
-# Offense count: 1
-Performance/Caller:
-  Exclude:
-    - 'lib/guard/plugin.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect.
-Performance/HashEachMethods:
-  Exclude:
-    - 'lib/guard/runner.rb'
-
-# Offense count: 1
-Style/CommentedKeyword:
-  Exclude:
-    - 'lib/guard/dsl.rb'
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -150,28 +46,7 @@ Style/EmptyMethod:
 # Cop supports --auto-correct.
 Style/Encoding:
   Exclude:
-    - 'guard.gemspec'
     - 'spec/lib/guard/dsl_describer_spec.rb'
-
-# Offense count: 39
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/guard/dsl.rb'
-    - 'lib/guard/guardfile.rb'
-    - 'lib/guard/guardfile/evaluator.rb'
-    - 'lib/guard/guardfile/generator.rb'
-    - 'lib/guard/internals/debugging.rb'
-    - 'lib/guard/internals/groups.rb'
-    - 'lib/guard/internals/session.rb'
-    - 'lib/guard/jobs/pry_wrapper.rb'
-    - 'lib/guard/notifier.rb'
-    - 'lib/guard/plugin.rb'
-    - 'lib/guard/plugin_util.rb'
-    - 'lib/guard/runner.rb'
-    - 'lib/guard/ui/colors.rb'
-    - 'lib/guard/version.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -180,8 +55,6 @@ Style/MutableConstant:
 Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
-    - 'lib/guard/dsl_describer.rb'
-    - 'lib/guard/terminal.rb'
 
 # Offense count: 14
 # Cop supports --auto-correct.
@@ -189,13 +62,4 @@ Style/NumericPredicate:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'Rakefile'
     - 'spec/lib/guard/dsl_spec.rb'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: percent
-  MinSize: 6

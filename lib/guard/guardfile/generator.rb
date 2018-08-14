@@ -22,7 +22,7 @@ module Guard
       require "guard/ui"
 
       INFO_TEMPLATE_ADDED =
-        "%s template added to Guardfile, feel free to edit it"
+        "%s template added to Guardfile, feel free to edit it".freeze
 
       # The Guardfile template for `guard init`
       GUARDFILE_TEMPLATE = File.expand_path(

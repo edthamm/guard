@@ -19,12 +19,12 @@ module Guard
       Deprecated::Evaluator.add_deprecated(self) unless Config.new.strict?
 
       ERROR_NO_GUARDFILE = "No Guardfile found,"\
-        " please create one with `guard init`."
+        " please create one with `guard init`.".freeze
 
       attr_reader :options, :guardfile_path
 
       ERROR_NO_PLUGINS = "No Guard plugins found in Guardfile,"\
-        " please add at least one."
+        " please add at least one.".freeze
 
       class Error < RuntimeError
       end
@@ -143,7 +143,7 @@ module Guard
       def _instance_eval_guardfile(contents)
         Dsl.new.evaluate(contents, @guardfile_path || "", 1)
       rescue => ex
-        UI.error "Invalid Guardfile, original error is:\n#{ $! }"
+        UI.error "Invalid Guardfile, original error is:\n#{$!}"
         raise ex
       end
 
@@ -174,7 +174,7 @@ module Guard
         @path, @contents = _read(@path)
         true
       rescue Errno::ENOENT
-        fail NoCustomGuardfile, "No Guardfile exists at #{ @path }."
+        fail NoCustomGuardfile, "No Guardfile exists at #{@path}."
       end
 
       def _use_default!

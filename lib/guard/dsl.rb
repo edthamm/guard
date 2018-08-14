@@ -53,10 +53,10 @@ module Guard
     end
 
     WARN_INVALID_LOG_LEVEL = "Invalid log level `%s` ignored. "\
-      "Please use either :debug, :info, :warn or :error."
+      "Please use either :debug, :info, :warn or :error.".freeze
 
     WARN_INVALID_LOG_OPTIONS = "You cannot specify the logger options"\
-      " :only and :except at the same time."
+      " :only and :except at the same time.".freeze
 
     # Set notification options for the system notifications.
     # You can set multiple notifications, which allows you to show local
@@ -143,7 +143,7 @@ module Guard
         @current_groups.pop
       else
         UI.error \
-          "No Guard plugins found in the group '#{ groups.join(', ') }',"\
+          "No Guard plugins found in the group '#{groups.join(', ')}',"\
           " please add at least one."
       end
     end

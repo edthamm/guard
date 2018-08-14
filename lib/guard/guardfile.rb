@@ -10,7 +10,7 @@ else
   module Guard
     unless Guard::Config.new.silence_deprecations?
       UPGRADE_WIKI_URL =
-        "https://github.com/guard/guard/wiki/Upgrading-to-Guard-2.0"
+        "https://github.com/guard/guard/wiki/Upgrading-to-Guard-2.0".freeze
 
       STDERR.puts <<-EOS
         (guard/guardfile.rb message)

@@ -140,7 +140,7 @@ module Guard
       if evaluator.inline?
         UI.info("Using inline Guardfile.")
       elsif evaluator.custom?
-        UI.info("Using Guardfile at #{ evaluator.path }.")
+        UI.info("Using Guardfile at #{evaluator.path}.")
       end
     rescue Guardfile::Evaluator::NoPluginsError => e
       UI.error(e.message)
