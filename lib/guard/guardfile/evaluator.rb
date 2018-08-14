@@ -142,10 +142,12 @@ module Guard
 
       def _instance_eval_guardfile(contents)
         Dsl.new.evaluate(contents, @guardfile_path || "", 1)
+      # rubocop:disable Lint/RescueWithoutErrorClass - Catch to enrich message
       rescue => ex
-        UI.error "Invalid Guardfile, original error is:\n#{$!}"
-        raise ex
+        UI.error "Invalid Guardfile, original error is:\n#{ex.message}"
+        UI.error ex.backtrace.join("\n")
       end
+      # rubocop:enable Lint/RescueWithoutErrorClass
 
       def _fetch_guardfile_contents
         _use_inline || _use_provided || _use_default
