@@ -104,7 +104,6 @@ module Guard
         guardfile.binwrite(format("\n%s\n", template_code), open_args: ["a"])
 
         _ui(:info, format(INFO_TEMPLATE_ADDED, plugin_name))
-
       rescue Errno::ENOENT
         fail NoSuchPlugin, plugin_name.downcase
       end

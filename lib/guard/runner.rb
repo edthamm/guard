@@ -27,12 +27,12 @@ module Guard
 
     PLUGIN_FAILED = "%s has failed, other group's plugins will be skipped."
 
-    MODIFICATION_TASKS = [
-      :run_on_modifications, :run_on_changes, :run_on_change
-    ]
+    MODIFICATION_TASKS = %i(
+      run_on_modifications run_on_changes run_on_change
+    )
 
-    ADDITION_TASKS = [:run_on_additions, :run_on_changes, :run_on_change]
-    REMOVAL_TASKS = [:run_on_removals, :run_on_changes, :run_on_deletion]
+    ADDITION_TASKS = %i(run_on_additions run_on_changes run_on_change)
+    REMOVAL_TASKS = %i(run_on_removals run_on_changes run_on_deletion)
 
     # Runs the appropriate tasks on all registered plugins
     # based on the passed changes.

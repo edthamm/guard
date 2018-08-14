@@ -99,13 +99,11 @@ module Guard
       const = _plugin_constant
       fail TypeError, "no constant: #{_constant_name}" unless const
       @plugin_class ||= Guard.const_get(const)
-
     rescue TypeError
       begin
         require "guard/#{ name.downcase }"
         const = _plugin_constant
         @plugin_class ||= Guard.const_get(const)
-
       rescue TypeError => error
         UI.error "Could not find class Guard::#{ _constant_name }"
         UI.error error.backtrace.join("\n")

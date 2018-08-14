@@ -325,7 +325,7 @@ module Guard
       if options[:level]
         options[:level] = options[:level].to_sym
 
-        unless [:debug, :info, :warn, :error].include? options[:level]
+        unless %i(debug info warn error).include? options[:level]
           UI.warning(format(WARN_INVALID_LOG_LEVEL, options[:level]))
           options.delete :level
         end
@@ -339,7 +339,7 @@ module Guard
       end
 
       # Convert the :only and :except options to a regular expression
-      [:only, :except].each do |name|
+      %i(only except).each do |name|
         next unless options[name]
 
         list = [].push(options[name]).flatten.map do |plugin|

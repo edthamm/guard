@@ -125,7 +125,7 @@ module Guard
           [:on, @options[:listen_on]]
         else
           listener_options = {}
-          [:latency, :force_polling, :wait_for_delay].each do |option|
+          %i(latency force_polling wait_for_delay).each do |option|
             listener_options[option] = @options[option] if @options[option]
           end
           expanded_watchdirs = watchdirs.map { |dir| File.expand_path dir }

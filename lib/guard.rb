@@ -1,4 +1,3 @@
-require "thread"
 require "listen"
 
 require "guard/config"
@@ -61,8 +60,8 @@ module Guard
       Notifier.connect(state.session.notify_options)
 
       traps = Internals::Traps
-      traps.handle("USR1") { async_queue_add([:guard_pause, :paused]) }
-      traps.handle("USR2") { async_queue_add([:guard_pause, :unpaused]) }
+      traps.handle("USR1") { async_queue_add(%i(guard_pause paused)) }
+      traps.handle("USR2") { async_queue_add(%i(guard_pause unpaused)) }
 
       @interactor = Interactor.new(state.session.interactor_name == :sleep)
       traps.handle("INT") { @interactor.handle_interrupt }
