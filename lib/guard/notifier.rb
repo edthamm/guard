@@ -22,7 +22,7 @@ module Guard
 
     DEPRECATED_IMPLICIT_CONNECT = "Calling Notiffany::Notifier.notify()"\
                                   " without a prior Notifier.connect() is"\
-                                  " deprecated"
+                                  " deprecated".freeze
 
     def self.notify(message, options = {})
       unless @notifier

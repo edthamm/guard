@@ -80,9 +80,11 @@ module Guard
     #
     def call_action(matches)
       @action.arity > 0 ? @action.call(matches) : @action.call
+    # rubocop:disable Lint/RescueWithoutErrorClass - Catch to enrich message
     rescue => ex
       UI.error "Problem with watch action!\n#{ex.message}"
       UI.error ex.backtrace.join("\n")
     end
+    # rubocop:enable Lint/RescueWithoutErrorClass
   end
 end

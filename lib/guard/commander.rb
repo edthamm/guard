@@ -35,7 +35,7 @@ module Guard
       listener.start
 
       watched = Guard.state.session.watchdirs.join("', '")
-      UI.info "Guard is now watching at '#{ watched }'"
+      UI.info "Guard is now watching at '#{watched}'"
 
       exitcode = 0
       begin

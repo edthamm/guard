@@ -19,12 +19,12 @@ module Guard
       Deprecated::Evaluator.add_deprecated(self) unless Config.new.strict?
 
       ERROR_NO_GUARDFILE = "No Guardfile found,"\
-        " please create one with `guard init`."
+        " please create one with `guard init`.".freeze
 
       attr_reader :options, :guardfile_path
 
       ERROR_NO_PLUGINS = "No Guard plugins found in Guardfile,"\
-        " please add at least one."
+        " please add at least one.".freeze
 
       class Error < RuntimeError
       end
@@ -142,10 +142,12 @@ module Guard
 
       def _instance_eval_guardfile(contents)
         Dsl.new.evaluate(contents, @guardfile_path || "", 1)
+      # rubocop:disable Lint/RescueWithoutErrorClass - Catch to enrich message
       rescue => ex
-        UI.error "Invalid Guardfile, original error is:\n#{ $! }"
-        raise ex
+        UI.error "Invalid Guardfile, original error is:\n#{ex.message}"
+        UI.error ex.backtrace.join("\n")
       end
+      # rubocop:enable Lint/RescueWithoutErrorClass
 
       def _fetch_guardfile_contents
         _use_inline || _use_provided || _use_default
@@ -174,7 +176,7 @@ module Guard
         @path, @contents = _read(@path)
         true
       rescue Errno::ENOENT
-        fail NoCustomGuardfile, "No Guardfile exists at #{ @path }."
+        fail NoCustomGuardfile, "No Guardfile exists at #{@path}."
       end
 
       def _use_default!

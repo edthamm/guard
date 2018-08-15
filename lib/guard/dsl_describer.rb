@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 require "formatador"
 
 require "guard/ui"
@@ -35,7 +35,7 @@ module Guard
       end
 
       # presentation
-      header = [:Plugin, :Guardfile]
+      header = %i(Plugin Guardfile)
       final_rows = []
       data.each do |name, used|
         final_rows << { Plugin: name, Guardfile: used ? "✔" : "✘" }
@@ -97,7 +97,7 @@ module Guard
       # render
       Formatador.display_compact_table(
         rows.drop(1),
-        [:Group, :Plugin, :Option, :Value]
+        %i(Group Plugin Option Value)
       )
     end
 
@@ -141,7 +141,7 @@ module Guard
 
       Formatador.display_compact_table(
         final_rows.drop(1),
-        [:Name, :Available, :Used, :Option, :Value]
+        %i(Name Available Used Option Value)
       )
     end
 

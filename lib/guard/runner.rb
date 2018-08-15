@@ -25,14 +25,14 @@ module Guard
       end
     end
 
-    PLUGIN_FAILED = "%s has failed, other group's plugins will be skipped."
+    PLUGIN_FAILED = "%s has failed, other group's plugins will be skipped.".freeze
 
-    MODIFICATION_TASKS = [
-      :run_on_modifications, :run_on_changes, :run_on_change
-    ]
+    MODIFICATION_TASKS = %i(
+      run_on_modifications run_on_changes run_on_change
+    ).freeze
 
-    ADDITION_TASKS = [:run_on_additions, :run_on_changes, :run_on_change]
-    REMOVAL_TASKS = [:run_on_removals, :run_on_changes, :run_on_deletion]
+    ADDITION_TASKS = %i(run_on_additions run_on_changes run_on_change).freeze
+    REMOVAL_TASKS = %i(run_on_removals run_on_changes run_on_deletion).freeze
 
     # Runs the appropriate tasks on all registered plugins
     # based on the passed changes.
@@ -77,7 +77,7 @@ module Guard
     #
     def _supervise(plugin, task, *args)
       catch self.class.stopping_symbol_for(plugin) do
-        plugin.hook("#{ task }_begin", *args)
+        plugin.hook("#{task}_begin", *args)
         result = UI.options.with_progname(plugin.class.name) do
           begin
             plugin.send(task, *args)
@@ -85,16 +85,16 @@ module Guard
             throw(:task_has_failed)
           end
         end
-        plugin.hook("#{ task }_end", result)
+        plugin.hook("#{task}_end", result)
         result
       end
     rescue ScriptError, StandardError, RuntimeError
-      UI.error("#{ plugin.class.name } failed to achieve its"\
-                        " <#{ task }>, exception was:" \
-                        "\n#{ $!.class }: #{ $!.message }" \
-                        "\n#{ $!.backtrace.join("\n") }")
+      UI.error("#{plugin.class.name} failed to achieve its"\
+                        " <#{task}>, exception was:" \
+                        "\n#{$!.class}: #{$!.message}" \
+                        "\n#{$!.backtrace.join("\n")}")
       Guard.state.session.plugins.remove(plugin)
-      UI.info("\n#{ plugin.class.name } has just been fired")
+      UI.info("\n#{plugin.class.name} has just been fired")
       $!
     end
 

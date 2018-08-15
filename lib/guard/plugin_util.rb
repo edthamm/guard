@@ -10,10 +10,10 @@ module Guard
   #
   class PluginUtil
     ERROR_NO_GUARD_OR_CLASS = "Could not load 'guard/%s' or" \
-      " find class Guard::%s"
+      " find class Guard::%s".freeze
 
     INFO_ADDED_GUARD_TO_GUARDFILE = "%s guard added to Guardfile,"\
-      " feel free to edit it"
+      " feel free to edit it".freeze
 
     attr_accessor :name
 
@@ -73,7 +73,7 @@ module Guard
     def plugin_location
       @plugin_location ||= _full_gem_path("guard-#{name}")
     rescue Gem::LoadError
-      UI.error "Could not find 'guard-#{ name }' gem path."
+      UI.error "Could not find 'guard-#{name}' gem path."
     end
 
     # Tries to load the Guard plugin main class. This transforms the supplied
@@ -99,15 +99,13 @@ module Guard
       const = _plugin_constant
       fail TypeError, "no constant: #{_constant_name}" unless const
       @plugin_class ||= Guard.const_get(const)
-
     rescue TypeError
       begin
-        require "guard/#{ name.downcase }"
+        require "guard/#{name.downcase}"
         const = _plugin_constant
         @plugin_class ||= Guard.const_get(const)
-
       rescue TypeError => error
-        UI.error "Could not find class Guard::#{ _constant_name }"
+        UI.error "Could not find class Guard::#{_constant_name}"
         UI.error error.backtrace.join("\n")
         # TODO: return value or move exception higher
       rescue LoadError => error
@@ -136,7 +134,7 @@ module Guard
       end
 
       if evaluator.guardfile_include?(name)
-        UI.info "Guardfile already includes #{ name } guard"
+        UI.info "Guardfile already includes #{name} guard"
       else
         content = File.read("Guardfile")
         File.open("Guardfile", "wb") do |f|
@@ -170,7 +168,7 @@ module Guard
     #   => "Rspec"
     #
     def _constant_name
-      @_constant_name ||= name.gsub(%r{/(.?)}) { "::#{ $1.upcase }" }.
+      @_constant_name ||= name.gsub(%r{/(.?)}) { "::#{$1.upcase}" }.
                           gsub(/(?:^|[_-])(.)/) { $1.upcase }
     end
 

@@ -22,7 +22,7 @@ module Guard
       require "guard/ui"
 
       INFO_TEMPLATE_ADDED =
-        "%s template added to Guardfile, feel free to edit it"
+        "%s template added to Guardfile, feel free to edit it".freeze
 
       # The Guardfile template for `guard init`
       GUARDFILE_TEMPLATE = File.expand_path(
@@ -104,7 +104,6 @@ module Guard
         guardfile.binwrite(format("\n%s\n", template_code), open_args: ["a"])
 
         _ui(:info, format(INFO_TEMPLATE_ADDED, plugin_name))
-
       rescue Errno::ENOENT
         fail NoSuchPlugin, plugin_name.downcase
       end

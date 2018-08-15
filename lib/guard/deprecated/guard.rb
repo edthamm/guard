@@ -212,7 +212,7 @@ module Guard
             end
 
             extend Forwardable
-            delegate [:to_a, :keys] => :to_hash
+            delegate %i(to_a keys) => :to_hash
             delegate [:include?] => :keys
 
             def fetch(key, *args)

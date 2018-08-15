@@ -4,7 +4,7 @@ module Guard
   # @private api
   module Internals
     class Groups
-      DEFAULT_GROUPS = [:common, :default]
+      DEFAULT_GROUPS = %i(common default).freeze
 
       def initialize
         @groups = DEFAULT_GROUPS.map { |name| Group.new(name) }

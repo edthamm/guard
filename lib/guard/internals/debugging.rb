@@ -16,7 +16,7 @@ module Guard
           [Kernel, :spawn],
           [Kernel, :`],
           [Open3, :popen3]
-        ]
+        ].freeze
 
         # Sets up debugging:
         #
