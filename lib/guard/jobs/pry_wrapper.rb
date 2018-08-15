@@ -229,8 +229,9 @@ module Guard
           Pry.commands.create_command guard_plugin.name, cmd do
             group "Guard"
 
-            process = -> { Pry.run_command "all #{match}" }
-            process.call
+            def process
+              Pry.run_command "all #{match}"
+            end
           end
         end
       end
@@ -248,8 +249,9 @@ module Guard
           Pry.commands.create_command group.name.to_s, cmd do
             group "Guard"
 
-            process = -> { Pry.run_command "all #{match}" }
-            process.call
+            def process
+              Pry.run_command "all #{match}"
+            end
           end
         end
       end
