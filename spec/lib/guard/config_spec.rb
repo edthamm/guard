@@ -1,10 +1,12 @@
-require "guard/config"
+# frozen_string_literal: true
+
+require 'guard/config'
 
 RSpec.describe Guard::Config, exclude_stubs: [:Nenv] do
   it { is_expected.to respond_to(:strict?) }
   it { is_expected.to respond_to(:silence_deprecations?) }
 
-  describe ".strict?" do
+  describe '.strict?' do
     before do
       allow(subject).to receive(:strict?).and_return(result)
     end
